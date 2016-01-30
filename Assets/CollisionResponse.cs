@@ -3,6 +3,7 @@ using System.Collections;
 
 public interface CollisionResponse {
 
-	bool handleCollision(Collision col);
+	bool collided(Collision col);
+	bool isValidTarget(Collision col);
 
 }

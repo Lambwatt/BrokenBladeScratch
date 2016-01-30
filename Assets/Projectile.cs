@@ -3,16 +3,23 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 	
-	public CollisionResponse collisionResponse = new BasicCollisionResponse();
+	private CollisionResponse collisionResponse = new BasicCollisionResponse();
+
+	public delegate void Effect(Entity e);
+	public Effect effect;
+
 
 	// Update is called once per frame
 	void OnCollisionEnter(Collision col) {
 		Debug.Log ("Collision happened");
 		if(collisionResponse!=null){
-			if(collisionResponse.handleCollision(col)){
+			if(collisionResponse.collided(col)){
+				if(collisionResponse.isValidTarget(col)){
+			    	effect(col.gameObject.GetComponent<Entity>());
+
+				}
 				Destroy(this.gameObject);
 			}
 		}
 	}
-	
 }

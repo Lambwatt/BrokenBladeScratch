@@ -7,6 +7,11 @@ public class PlayerShoot : MonoBehaviour {
 	public Camera m_camera;
 	public Transform projectile;
 	public float shotSpeed;
+	public Ability activeAbility;
+
+	void Start(){
+		activeAbility = this.GetComponent<WaterBolt>();
+	}
 
 	// Update is called once per frame
 	void Update () {
@@ -28,17 +33,17 @@ public class PlayerShoot : MonoBehaviour {
 	}
 
 	void shoot(){
+
 		Vector3 projectilePosition = this.transform.position;
 		projectilePosition += this.transform.right * 1.5f;
 		Transform clone = Instantiate(projectile, projectilePosition, Quaternion.identity) as Transform;
-
+		activeAbility.setShot(clone.GetComponent<Projectile>());
 		clone.RotateAround(this.transform.position, Vector3.up, GetComponentInParent<PlayerShoot>().m_angleToMouse);
+
 		Matrix4x4 rotMatrix = new Matrix4x4();
 		rotMatrix.SetTRS(new Vector3(), Quaternion.Euler(0.0f, m_angleToMouse, 0.0f), new Vector3(1.0f, 1.0f, 1.0f));
 		clone.GetComponent<Rigidbody>().velocity = rotMatrix.MultiplyVector(Vector3.right);
 		clone.GetComponent<Rigidbody>().velocity *= shotSpeed; 
-
-
 		 
 	}
 }
