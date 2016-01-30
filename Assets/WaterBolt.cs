@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaterBolt : UnityEngine.MonoBehaviour, Ability {
+public class WaterBolt : MonoBehaviour, Ability {
 
 	float m_cooldownRemaining;
-	public float m_cooldown;
+	public float m_cooldown = 0.0f;
 
 	// Update is called once per frame
 	void Update () {
-		if(m_cooldown>0){
+		//Debug.Log ("Updated?");
+		if(m_cooldown>0.0f){
+			Debug.Log ("Updated?");
 			m_cooldownRemaining-=Time.deltaTime;
 		}
 	}
@@ -19,7 +21,8 @@ public class WaterBolt : UnityEngine.MonoBehaviour, Ability {
 	}
 	
 	public bool canShoot(){
-		return false;
+		Debug.Log ("Can shoot? "+m_cooldownRemaining);
+		return  m_cooldownRemaining<=0.0f;
 	}
 
 	public void damageAndAddWaterMark(Entity e){

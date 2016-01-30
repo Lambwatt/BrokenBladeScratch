@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour {
 
 	// Update is called once per frame
 	void OnCollisionEnter(Collision col) {
-		Debug.Log ("Collision happened");
 		if(collisionResponse!=null){
 			if(collisionResponse.collided(col)){
 				if(collisionResponse.isValidTarget(col)){

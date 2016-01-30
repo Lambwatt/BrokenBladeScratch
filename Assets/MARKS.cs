@@ -41,6 +41,5 @@ public class Marks{
 
 	public void consume(){
 		count = 0;
-
 	}
 }
