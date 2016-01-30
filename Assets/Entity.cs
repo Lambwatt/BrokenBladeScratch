@@ -60,7 +60,12 @@ public class Entity : MonoBehaviour {
 	}
 
 	void OnDestroy(){
+		Debug.Log ("name:"+gameObject.name+", tag:"+tag);
+		if(tag == "Player"){
+			GameObject.FindWithTag("GameManager").GetComponent<GameOver>().gameOver();
+		}
 		Destroy(water);
+		Destroy(fire);
 	}
 	
 }

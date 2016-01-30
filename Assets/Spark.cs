@@ -24,6 +24,6 @@ public class Spark : UnityEngine.MonoBehaviour, Ability {
 
 	public void damageAndAddFireMark(Entity e){
 		e.marks[MARKS.fire].add(1);
-		e.dealDamage(6);
+		e.dealDamage(20);
 	}
 }
