@@ -16,6 +16,10 @@ public class Marks{
 		timeToDecay = 0.0f;
 	}
 
+	public int getCount(){
+		return count;
+	}
+
 	public void add(int i){
 		count+=i;
 		if(count>10) 
