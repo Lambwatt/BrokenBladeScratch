@@ -7,7 +7,7 @@ public class Entity : MonoBehaviour {
 	public Marks[] marks = new Marks[MARKS.num];
 	public int hitPoints;
 	private int totalHealth;
-	public Canvas canvas;
+	Canvas canvas;
 	Text water;
 	Text fire;
 	public Transform healthLeftBar;
@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		cam = Camera.main;
+		canvas = GameObject.FindWithTag("Canvas").GetComponent<Canvas>();
 
 		if(hitPoints == 0)
 			hitPoints = 100;
