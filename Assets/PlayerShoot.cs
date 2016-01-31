@@ -29,7 +29,14 @@ public class PlayerShoot : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.Space) && activeAbility.canShoot())
 			shoot();
-		
+
+		if(Input.GetKeyDown(KeyCode.Q)){
+			activeAbility = this.GetComponent<WaterBolt>();
+		}
+
+		if(Input.GetKeyDown(KeyCode.E)){
+			activeAbility = this.GetComponent<Siphon>();
+		}
 	}
 
 	void shoot(){

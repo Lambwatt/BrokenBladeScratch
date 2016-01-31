@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaterBolt : MonoBehaviour, Ability {
+public class Siphon : MonoBehaviour, Ability {
 
 	float m_cooldownRemaining;
 	public float m_cooldown = 0.0f;
@@ -16,7 +16,7 @@ public class WaterBolt : MonoBehaviour, Ability {
 	}
 
 	public void setShot(Projectile p){
-		p.effect = damageAndAddWaterMark;
+		p.effect = transferHealth;
 		m_cooldownRemaining = m_cooldown;
 	}
 	
@@ -25,9 +25,10 @@ public class WaterBolt : MonoBehaviour, Ability {
 		return  m_cooldownRemaining<=0.0f;
 	}
 
-	public void damageAndAddWaterMark(Entity e){
-		Debug.Log ("Hit with water bolt.");
-		e.marks[MARKS.water].add(1);
-		e.dealDamage(10);
+	public void transferHealth(Entity e){
+		int n = e.marks[MARKS.water].getCount();
+		e.dealDamage(n*5);
+		GameObject.FindWithTag("Player").GetComponent<Entity>().dealDamage(-5*n);
+		e.marks[MARKS.water].consume();
 	}
 }

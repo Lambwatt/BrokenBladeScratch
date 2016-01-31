@@ -72,6 +72,8 @@ public class Entity : MonoBehaviour {
 
 	public void dealDamage(int d){
 		hitPoints -= d;
+		hitPoints = Mathf.Min(hitPoints, totalHealth);
+		hitPoints = Mathf.Max (hitPoints, 0);
 	}
 
 	void OnDestroy(){
