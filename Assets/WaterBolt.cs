@@ -27,6 +27,7 @@ public class WaterBolt : MonoBehaviour, Ability {
 
 	public void damageAndAddWaterMark(Entity e){
 		e.marks[MARKS.water].add(1);
-		e.dealDamage(5);
+		e.dealDamage(10);
 	}
 }
+x

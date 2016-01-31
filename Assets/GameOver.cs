@@ -17,11 +17,23 @@ public class GameOver : MonoBehaviour {
 			}else{
 				timeRemaining-=Time.deltaTime;
 			}
+		}else{
+			if(GameObject.FindGameObjectsWithTag("Spawner").Length==0 && GameObject.FindGameObjectsWithTag("Enemy").Length==0){
+				win();
+			}
 		}
+
 	}
 
 	public void gameOver(){
 		gameOverText.alpha = 1;
+		countingDown = true;
+	}
+
+    void win(){
+		gameOverText.alpha = 1;
+		gameOverText.GetComponent<Text>().text = "You win!";
+		gameOverText.GetComponent<Text>().color = Color.green;
 		countingDown = true;
 	}
 }
