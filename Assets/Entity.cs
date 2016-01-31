@@ -63,7 +63,7 @@ public class Entity : MonoBehaviour {
 
 		if(hitPoints<totalHealth){
 			healthLeftBar.localScale = new Vector3((float)hitPoints/(float)totalHealth, 0.2f, 1f);
-			healthLeftBar.localPosition = new Vector3(healthLeftBar.localScale.x/(-2.0f), 1.0f, 0.55f);
+			healthLeftBar.localPosition = new Vector3((-.5f)+(healthLeftBar.localScale.x/(2.0f)), 1.0f, 0.55f);
 			healthTotalBar.localScale = new Vector3(1f, 0.2f, 1f);
 		}
 		//healthBar.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.0f, 0.0f, 0.9f));
