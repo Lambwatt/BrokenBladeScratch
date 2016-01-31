@@ -10,9 +10,8 @@ public class Entity : MonoBehaviour {
 	public Canvas canvas;
 	Text water;
 	Text fire;
-	RectTransform healthBar;
-	RectTransform totalBar;
-	RectTransform remainingBar;
+	public Transform healthLeftBar;
+	public Transform healthTotalBar;
 	Camera cam;
 
 	// Use this for initialization
@@ -36,13 +35,8 @@ public class Entity : MonoBehaviour {
 		fire.transform.SetParent(canvas.transform);
 		fire.rectTransform.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.5f, 0.0f, 0.5f));
 
-		healthBar = Instantiate(Resources.Load<GameObject>("HealthBar")).GetComponent<RectTransform>();
-		healthBar.SetParent(canvas.transform);
-		healthBar.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.0f, 0.0f, 0.9f));
-		//healthBar.GetComponent<CanvasGroup>().alpha = 0;
-
-		totalBar = healthBar.GetComponentsInChildren<RectTransform>()[0]; 
-		remainingBar = healthBar.GetComponentsInChildren<RectTransform>()[1]; 
+		healthLeftBar.localScale = new Vector3(0, 0, 1);
+		healthTotalBar.localScale = new Vector3(0, 0, 1);
 	}
 	
 	// Update is called once per frame
@@ -68,9 +62,11 @@ public class Entity : MonoBehaviour {
 		fire.rectTransform.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.5f, 0.0f, 0.5f));
 
 		if(hitPoints<totalHealth){
-			healthBar.GetComponent<CanvasGroup>().alpha = 1;
+			healthLeftBar.localScale = new Vector3((float)hitPoints/(float)totalHealth, 0.2f, 1f);
+			healthLeftBar.localPosition = new Vector3(healthLeftBar.localScale.x/(-2.0f), 1.0f, 0.55f);
+			healthTotalBar.localScale = new Vector3(1f, 0.2f, 1f);
 		}
-		healthBar.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.0f, 0.0f, 0.9f));
+		//healthBar.anchoredPosition = cam.WorldToScreenPoint(transform.position + new Vector3(0.0f, 0.0f, 0.9f));
 	}
 
 	public void dealDamage(int d){
